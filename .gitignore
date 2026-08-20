@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Django
+db.sqlite3
+*.sqlite3
+media_root/*
+staticfiles/*
+logs/*
+
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# Database backups / secrets
+*.sql
+*.sql.gz
+*.tar.gz
+*.dump
+*.bak

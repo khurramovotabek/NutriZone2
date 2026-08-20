@@ -1,0 +1,104 @@
+{% extends "admin/base_site.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 col-6">
+      <div class="small-box">
+        <div class="inner">
+          <h3>{{ overview.total_products }}</h3>
+          <p>Total Products ({{ overview.active_products }} active)</p>
+        </div>
+        <div class="icon"><i class="fas fa-box"></i></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="small-box">
+        <div class="inner">
+          <h3>{{ overview.orders_by_status.new }}</h3>
+          <p>New Orders</p>
+        </div>
+        <div class="icon"><i class="fas fa-shopping-cart"></i></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="small-box">
+        <div class="inner">
+          <h3>{{ overview.total_revenue|floatformat:0|intcomma }}</h3>
+          <p>Revenue (accepted orders)</p>
+        </div>
+        <div class="icon"><i class="fas fa-coins"></i></div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="small-box">
+        <div class="inner">
+          <h3>{{ overview.out_of_stock_count }}</h3>
+          <p>Out of Stock Variants</p>
+        </div>
+        <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"><h3 class="card-title">Orders by Status</h3></div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <tr><td>New</td><td class="text-right">{{ overview.orders_by_status.new }}</td></tr>
+            <tr><td>Pending</td><td class="text-right">{{ overview.orders_by_status.pending }}</td></tr>
+            <tr><td>Accepted</td><td class="text-right">{{ overview.orders_by_status.accepted }}</td></tr>
+            <tr><td>Cancelled</td><td class="text-right">{{ overview.orders_by_status.cancelled }}</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3 class="card-title">Recent Orders</h3></div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <thead><tr><th>Order</th><th>Customer</th><th>Status</th><th class="text-right">Total</th></tr></thead>
+            <tbody>
+              {% for order in overview.recent_orders %}
+              <tr>
+                <td><a href="{% url 'admin:orders_order_change' order.id %}">{{ order.order_number }}</a></td>
+                <td>{{ order.full_name }}</td>
+                <td>{{ order.status }}</td>
+                <td class="text-right">{{ order.total_price }}</td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="4">No orders yet.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header"><h3 class="card-title">Low Stock Variants</h3></div>
+        <div class="card-body p-0">
+          <table class="table table-sm mb-0">
+            <thead><tr><th>SKU</th><th>Product</th><th class="text-right">Qty left</th></tr></thead>
+            <tbody>
+              {% for variant in overview.low_stock_variants %}
+              <tr>
+                <td><a href="{% url 'admin:products_productvariant_change' variant.id %}">{{ variant.sku }}</a></td>
+                <td>{{ variant.product }}</td>
+                <td class="text-right">{{ variant.quantity }}</td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="3">Nothing low on stock.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

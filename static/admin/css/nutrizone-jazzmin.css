@@ -1,0 +1,72 @@
+/* NutriZone Jazzmin theme overrides.
+   Base theme is the "darkly" bootswatch (set in JAZZMIN_UI_TWEAKS) --
+   this file layers the NutriZone brand accent (volt green) on top, matching
+   the storefront's --accent-volt (#C6FF3D) for visual continuity between
+   the admin and the customer-facing site. */
+
+:root {
+  --nz-volt: #c6ff3d;
+  --nz-volt-dark: #9fd42a;
+  --nz-graphite: #15151a;
+  --nz-graphite-elevated: #1e1e24;
+}
+
+body.theme-darkly {
+  background-color: var(--nz-graphite) !important;
+}
+
+.main-sidebar,
+.brand-link {
+  background-color: var(--nz-graphite) !important;
+  border-right: 1px solid rgba(198, 255, 61, 0.08);
+}
+
+.brand-link .brand-text {
+  color: var(--nz-volt) !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.nav-sidebar > .nav-item > .nav-link.active {
+  background-color: rgba(198, 255, 61, 0.12) !important;
+  color: var(--nz-volt) !important;
+  border-left: 3px solid var(--nz-volt);
+}
+
+.nav-sidebar .nav-link:hover {
+  color: var(--nz-volt) !important;
+}
+
+.btn-primary,
+.btn-info {
+  background-color: var(--nz-volt) !important;
+  border-color: var(--nz-volt) !important;
+  color: #0b0b0c !important;
+  font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-info:hover {
+  background-color: var(--nz-volt-dark) !important;
+  border-color: var(--nz-volt-dark) !important;
+}
+
+a {
+  color: var(--nz-volt);
+}
+
+.card,
+.small-box,
+.info-box {
+  background-color: var(--nz-graphite-elevated) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.small-box .icon {
+  color: rgba(198, 255, 61, 0.18) !important;
+}
+
+.badge-verified::before {
+  content: "✓ ";
+}
