@@ -129,7 +129,7 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = False
 # Cache / Redis
 # ---------------------------------------------------------------------------
 
-REDIS_URL = env("REDIS_URL", default="redis://localhost:6379/0")
+REDIS_URL = env("REDIS_URL", default="redis://red-da3e82dg1s2s73decpug:6379")
 
 CACHES = {
     "default": {
